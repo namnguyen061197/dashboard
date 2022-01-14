@@ -1,0 +1,107 @@
+<div class="dashboard">
+  <div class="title d-flex justify-content-between align-items-center mb-4">
+    <h3>Dashboard</h3>
+    <div class="title-left">
+      <button class="date btn me-3">13/1/2022</button>
+      <button type="button" class="btn btn-warning fw-bold">Export</button>
+    </div>
+  </div>
+  <div class="summary-data">
+    <div class="row">
+      <div class="col-lg-4">
+        <ng-container
+          [ngTemplateOutlet]="dataItem"
+          [ngTemplateOutletContext]="{ name: 'Total sells', quanlity: '3286.78', perform: '25.6', positivePerform: true }"
+        ></ng-container>
+      </div>
+      <div class="col-lg-4">
+        <ng-container
+          [ngTemplateOutlet]="dataItem"
+          [ngTemplateOutletContext]="{ name: 'Average order value', quanlity: '86.78', perform: '15', positivePerform: false }"
+        ></ng-container>
+      </div>
+      <div class="col-lg-4">
+        <ng-container
+          [ngTemplateOutlet]="dataItem"
+          [ngTemplateOutletContext]="{ name: 'Total orders', quanlity: '504', perform: '20.6', positivePerform: false }"
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 my-4">
+      <div class="card active-users">
+        <p class="card-title">Active Users</p>
+        <div class="user-quanlity mb-2">
+          148
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">
+            <p class="card-name">Active Pages</p>
+            <p class="card-name">Users</p>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>/product/bra</span>
+            <span>18</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>/checkout</span>
+            <span>12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>/checkout</span>
+            <span>12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>/checkout</span>
+            <span>12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>/checkout</span>
+            <span>12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>/checkout</span>
+            <span>12</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-9 my-4">
+      <div class="card income-statis">
+        <p class="card-title">Income Statistics</p>
+        <ngx-charts-bar-vertical
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #dataItem
+  let-name="name"
+  let-quanlity="quanlity"
+  let-perform="perform"
+  let-positivePerform="positivePerform"
+>
+  <div class="card">
+    <p class="card-name">{{name}}</p>
+    <div class="card-info d-flex justify-content-between align-items-end mt-3">
+      <h2>${{quanlity}}</h2>
+      <div class="perform">
+        <p class="text-end" [ngClass]="positivePerform ? 'increase' : 'decrease'" >
+          <i class="fas fa-long-arrow-alt-up me-2" [ngClass]="positivePerform ? 'increase' : 'decrease'"  ></i>
+          <span [ngStyle]="{'color': positivePerform ? 'green' : 'red','font-weight': '500'}">{{perform}}%</span>
+        </p>
+        <p class="date">Compared to April 2021</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

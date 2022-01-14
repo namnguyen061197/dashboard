@@ -1,0 +1,16 @@
+
+<div class="app">
+  <div class="row">
+    <div class="col-lg-2" *ngIf="!modeFullView">
+      <app-slidenav></app-slidenav>
+    </div>
+    <div [class]="modeFullView ? 'col-lg-12' : 'col-lg-10'">
+      <app-header
+        (handleToggleExtendView)="toggleExtend()"
+      ></app-header>
+      <div class="main p-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
